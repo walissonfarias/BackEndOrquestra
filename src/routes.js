@@ -4,6 +4,9 @@ const NewsController = require('./controllers/NewsController');
 
 const routes = Router();
 
+app.get("/", (req, res) => {
+  res.send({ hello: "world" });
+});
 
 // Mobile news index route
 routes.get('/news', NewsController.index);
