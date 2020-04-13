@@ -7,9 +7,9 @@ const routes = require('./routes');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.API_SERVER_PORT || 8000;
+const port = process.env.API_SERVER_PORT;
 
-const uri = process.env.DATABASE_URL || 'mongodb+srv://squadverde:squadverde123@clusterop-oruka.mongodb.net/test?retryWrites=true&w=majority';
+const uri = process.env.DATABASE_URL;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 const { connection } = mongoose;
 connection.on('error', (error) => console.error(error));
