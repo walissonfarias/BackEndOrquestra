@@ -4,7 +4,7 @@ const NewsController = require('./controllers/NewsController');
 
 const routes = Router();
 
-app.get("/", (req, res) => {
+routes.get("/", (req, res) => {
   res.send({ hello: "world" });
 });
 
