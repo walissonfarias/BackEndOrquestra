@@ -4,6 +4,7 @@ const NewsController = require('./controllers/NewsController');
 
 const routes = Router();
 
+
 // Mobile news index route
 routes.get('/news', NewsController.index);
 // Mobile read news route
