@@ -9,7 +9,13 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT;
 
-const uri = process.env.DATABASE_URL;
+let uri;
+
+if (process.env.DEVELOPMENT === 'true') {
+  uri = process.env.DATABASE_TEST_URL;
+} else {
+  uri = process.env.DATABASE_URL;
+}
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 const { connection } = mongoose;
 connection.on('error', (error) => console.error(error));
