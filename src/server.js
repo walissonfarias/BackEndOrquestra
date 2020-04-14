@@ -23,7 +23,7 @@ connection.on('error', (error) => console.error(error));
 connection.once('open', () => console.log('Connected to Mongoose'));
 
 app.use(cors());
-app.use(bodyParser.json({limit: '2mb'}));
+app.use(bodyParser.json({ limit: '2mb' }));
 app.use(routes);
 
 app.listen(port, () => {

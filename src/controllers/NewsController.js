@@ -50,4 +50,16 @@ module.exports = {
           error: err,
         }));
   },
+
+  async destroy(req, res) {
+    await News.findByIdAndDelete(req.params.id)
+      .exec()
+      .then((news) => res.status(200)
+        .json(news))
+      .catch((err) => res.status(500)
+        .json({
+          message: 'Error deleting specific news',
+          error: err,
+        }));
+  },
 };
