@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const routes = require('./routes');
@@ -22,7 +23,7 @@ connection.on('error', (error) => console.error(error));
 connection.once('open', () => console.log('Connected to Mongoose'));
 
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json({limit: '2mb'}));
 app.use(routes);
 
 app.listen(port, () => {
