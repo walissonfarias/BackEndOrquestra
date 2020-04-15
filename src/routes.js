@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 const NewsController = require('./controllers/NewsController');
-const EventsController = require('./controllers/EventsController');
+const EventController = require('./controllers/EventController');
 
 const routes = Router();
 
@@ -11,8 +11,10 @@ routes.post('/news', NewsController.store);
 routes.put('/news/:id', NewsController.update);
 routes.delete('/news/:id', NewsController.destroy);
 
-routes.get('/events', EventsController.index);
-routes.get('/events/:id', EventsController.index);
-routes.post('/events', EventsController.store);
+routes.get('/events', EventController.index);
+routes.get('/events/:id', EventController.index);
+routes.post('/events', EventController.store);
+routes.put('/events/:id', EventController.update);
+routes.delete('/events/:id', EventController.destroy);
 
 module.exports = routes;

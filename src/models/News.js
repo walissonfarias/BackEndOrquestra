@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const mongoosePaginate = require('mongoose-paginate');
+
 const { Schema } = mongoose;
 
 const newsSchema = new Schema({
@@ -29,6 +31,8 @@ const newsSchema = new Schema({
     required: true,
   },
 });
+
+newsSchema.plugin(mongoosePaginate);
 
 const News = mongoose.model('News', newsSchema);
 

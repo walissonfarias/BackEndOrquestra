@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
+const mongoosePaginate = require('mongoose-paginate');
+
 const { Schema } = mongoose;
 
-const eventsSchema = new Schema({
+const eventSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -58,8 +60,10 @@ const eventsSchema = new Schema({
   },
 });
 
-eventsSchema.index({ location: '2dsphere' });
+eventSchema.index({ location: '2dsphere' });
 
-const Events = mongoose.model('Events', eventsSchema);
+eventSchema.plugin(mongoosePaginate);
 
-module.exports = Events;
+const Event = mongoose.model('Event', eventSchema);
+
+module.exports = Event;
