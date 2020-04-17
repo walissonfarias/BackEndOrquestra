@@ -1,9 +1,18 @@
 const Event = require('../models/Event');
+const queryDate = require('../utils/queryDate');
 
 module.exports = {
   async index(req, res) {
     if (!req.params.id) {
-      const { page = 1 } = req.query;
+      const {
+        page = 1,
+        year,
+      } = req.query;
+
+      const month = req.query.month - 1;
+
+      const query = queryDate(month, year);
+
       const options = {
         page,
         limit: 5,
@@ -11,7 +20,7 @@ module.exports = {
         sort: { date: 'asc' },
       };
 
-      await Event.paginate({}, options, (err, event) => {
+      await Event.paginate(query, options, (err, event) => {
         if (err) {
           return res.status(500).json({
             message: 'Error finding all events',
