@@ -7,11 +7,12 @@ module.exports = {
       const {
         page = 1,
         year,
+        mobile = 'false',
       } = req.query;
 
       const month = req.query.month - 1;
 
-      const query = queryDate(month, year);
+      const query = queryDate(month, year, mobile);
 
       const options = {
         page,
