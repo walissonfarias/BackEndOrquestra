@@ -17,7 +17,9 @@ if (process.env.DEVELOPMENT === 'true') {
 } else {
   uri = process.env.DATABASE_URL;
 }
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+mongoose.connect(uri, {
+  useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false,
+});
 const { connection } = mongoose;
 connection.on('error', (error) => console.error(error));
 connection.once('open', () => console.log('Connected to Mongoose'));
