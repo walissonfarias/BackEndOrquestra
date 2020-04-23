@@ -51,7 +51,6 @@ const eventSchema = new Schema({
   },
   classification: {
     type: String,
-    enum: ['Livre'],
     required: true,
   },
   description: {
