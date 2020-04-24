@@ -53,11 +53,14 @@ module.exports = {
       end,
       local,
       address = '',
-      lat,
-      long,
       duration = '',
       classification,
       description,
+    } = req.body;
+
+    let {
+      lat = '',
+      long = '',
     } = req.body;
 
     const hour = {
@@ -65,14 +68,15 @@ module.exports = {
       end,
     };
 
-    let location;
-
-    if (lat !== '' && long !== '') {
-      location = {
-        type: 'Point',
-        coordinates: [long, lat],
-      };
+    if (lat === '' || long === '') {
+      lat = 0;
+      long = 0;
     }
+
+    const location = {
+      type: 'Point',
+      coordinates: [long, lat],
+    };
 
     await Event.create({
       name,
@@ -105,11 +109,14 @@ module.exports = {
       end,
       local,
       address = '',
-      lat,
-      long,
       duration = '',
       classification,
       description,
+    } = req.body;
+
+    let {
+      lat = '',
+      long = '',
     } = req.body;
 
     const hour = {
@@ -117,14 +124,15 @@ module.exports = {
       end,
     };
 
-    let location;
-
-    if (lat !== '' || long !== '') {
-      location = {
-        type: 'Point',
-        coordinates: [long, lat],
-      };
+    if (lat === '' || long === '') {
+      lat = 0;
+      long = 0;
     }
+
+    const location = {
+      type: 'Point',
+      coordinates: [long, lat],
+    };
 
     await Event.findByIdAndUpdate(req.params.id, {
       name,
