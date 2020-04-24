@@ -16,7 +16,7 @@ module.exports = {
 
       const options = {
         page,
-        limit: 5,
+        limit: 6,
         select: 'name tour date hour local',
         sort: { date: 'asc' },
       };

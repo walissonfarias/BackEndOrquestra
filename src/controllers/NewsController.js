@@ -6,7 +6,7 @@ module.exports = {
       const { page = 1 } = req.query;
       const options = {
         page,
-        limit: 5,
+        limit: 6,
         select: 'image briefTitle description date',
         sort: { date: 'desc' },
       };
