@@ -53,8 +53,8 @@ module.exports = {
       end,
       local,
       address = '',
-      lat = 0,
-      long = 0,
+      lat,
+      long,
       duration = '',
       classification,
       description,
@@ -67,7 +67,7 @@ module.exports = {
 
     let location;
 
-    if (lat !== undefined && long !== undefined) {
+    if (lat !== '' && long !== '') {
       location = {
         type: 'Point',
         coordinates: [long, lat],
@@ -105,8 +105,8 @@ module.exports = {
       end,
       local,
       address = '',
-      lat = 0,
-      long = 0,
+      lat,
+      long,
       duration = '',
       classification,
       description,
@@ -119,7 +119,7 @@ module.exports = {
 
     let location;
 
-    if (lat !== undefined || long !== undefined) {
+    if (lat !== '' || long !== '') {
       location = {
         type: 'Point',
         coordinates: [long, lat],
