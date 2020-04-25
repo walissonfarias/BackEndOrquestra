@@ -38,20 +38,17 @@ const eventSchema = new Schema({
     type: {
       type: String,
       enum: ['Point'],
-      required: true,
     },
     coordinates: {
       type: [Number],
-      required: true,
     },
   },
   duration: {
     type: String,
-    required: true,
   },
   classification: {
     type: String,
-    enum: ['Livre'],
+    enum: ['Livre', 10, 12, 14, 16, 18],
     required: true,
   },
   description: {

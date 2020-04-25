@@ -16,7 +16,7 @@ module.exports = {
 
       const options = {
         page,
-        limit: 5,
+        limit: 6,
         select: 'name tour date hour local',
         sort: { date: 'asc' },
       };
@@ -52,22 +52,32 @@ module.exports = {
       start,
       end,
       local,
-      address,
-      lat,
-      long,
-      duration,
+      address = '',
+      duration = '',
       classification,
       description,
+    } = req.body;
+
+    let {
+      lat = '',
+      long = '',
     } = req.body;
 
     const hour = {
       start,
       end,
     };
+
+    if (lat === '' || long === '') {
+      lat = 0;
+      long = 0;
+    }
+
     const location = {
       type: 'Point',
       coordinates: [long, lat],
     };
+
     await Event.create({
       name,
       tour,
@@ -91,7 +101,51 @@ module.exports = {
   },
 
   async update(req, res) {
-    await Event.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    const {
+      name,
+      tour,
+      date,
+      start,
+      end,
+      local,
+      address = '',
+      duration = '',
+      classification,
+      description,
+    } = req.body;
+
+    let {
+      lat = '',
+      long = '',
+    } = req.body;
+
+    const hour = {
+      start,
+      end,
+    };
+
+    if (lat === '' || long === '') {
+      lat = 0;
+      long = 0;
+    }
+
+    const location = {
+      type: 'Point',
+      coordinates: [long, lat],
+    };
+
+    await Event.findByIdAndUpdate(req.params.id, {
+      name,
+      tour,
+      date,
+      hour,
+      local,
+      address,
+      location,
+      duration,
+      classification,
+      description,
+    }, { new: true })
       .exec((err, event) => {
         if (err) {
           return res.status(500).json({
