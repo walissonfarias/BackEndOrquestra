@@ -35,14 +35,34 @@ module.exports = {
   },
 
   async store(req, res) {
-    await News.create(req.body, (err, news) => {
+    await News.findOne({
+      image: req.body.image,
+      briefTitle: req.body.briefTitle,
+      description: req.body.description,
+      date: req.body.date,
+      title: req.body.title,
+      text: req.body.text,
+    // eslint-disable-next-line consistent-return
+    }, (err, news) => {
       if (err) {
         return res.status(400).json({
           message: 'Error creating new news',
           error: err,
         });
+      } if (news) {
+        return res.status(400).json({
+          message: 'News already exists',
+        });
       }
-      return res.status(200).json(news);
+      News.create(req.body, (_err, _news) => {
+        if (_err) {
+          return res.status(400).json({
+            message: 'Error creating new news',
+            error: _err,
+          });
+        }
+        return res.status(200).json(_news);
+      });
     });
   },
 

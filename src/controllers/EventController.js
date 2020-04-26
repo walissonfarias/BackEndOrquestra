@@ -78,25 +78,47 @@ module.exports = {
       coordinates: [long, lat],
     };
 
-    await Event.create({
+    await Event.findOne({
       name,
       tour,
       date,
-      hour,
       local,
       address,
-      location,
       duration,
       classification,
       description,
+    // eslint-disable-next-line consistent-return
     }, (err, event) => {
       if (err) {
         return res.status(400).json({
           message: 'Error creating new event',
           error: err,
         });
+      } if (event) {
+        return res.status(400).json({
+          message: 'Event already exists',
+        });
       }
-      return res.status(200).json(event);
+      Event.create({
+        name,
+        tour,
+        date,
+        hour,
+        local,
+        address,
+        location,
+        duration,
+        classification,
+        description,
+      }, (_err, _event) => {
+        if (_err) {
+          return res.status(400).json({
+            message: 'Error creating new event',
+            error: _err,
+          });
+        }
+        return res.status(200).json(_event);
+      });
     });
   },
 
